@@ -46,7 +46,7 @@ Note! The event fired on every plugin insert, even if it is a plugin from `defau
 
 The `event.detail.pluginType` property contains `PluginType` instance.
 ```js
-stream.form.el.addEventListener('rubricate__plugin_form_inserted', (e) => {
+app.form.el.addEventListener('rubricate__plugin_form_inserted', (e) => {
     // e.detail : {plugin: pluginType}
     // do something after plugin form was inserted
 });
