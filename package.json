@@ -1,6 +1,6 @@
 {
   "name": "rubricate",
-  "version": "0.0.1",
+  "version": "0.0.2",
   "description": "Clean way to build content via custom blocks.",
   "main": "dist/rubricate.js",
   "scripts": {
