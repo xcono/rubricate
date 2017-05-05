@@ -1,0 +1,43 @@
+.fs-dropzone {
+
+  // overwrite dropzone styles
+  &.dropzone {
+
+    width: 100%;
+    border: 1px solid $silver;
+    border-radius: 2px;
+
+    .dz-preview {
+
+      .dz-image {
+        border-radius: 4px;
+        width: 80px;
+        height: 80px;
+
+        img {
+          max-width: 200%;
+        }
+      }
+
+      &:hover {
+        .dz-image {
+          img {
+            filter: none;
+          }
+        }
+      }
+
+      .dz-details {
+        display: none;
+      }
+
+      .dz-remove {
+        font-size: 11px;
+        text-transform: lowercase;
+      }
+
+
+    }
+  }
+
+}

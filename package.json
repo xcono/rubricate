@@ -1,0 +1,31 @@
+{
+  "name": "rubrcate",
+  "version": "0.0.1",
+  "description": "Clean way to build content via block. ",
+  "main": "dist/rubricate.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "engines": {
+    "node": ">=6.0.0"
+  },
+  "author": "Egor Denisov",
+  "license": "ISC",
+  "dependencies": {},
+  "devDependencies": {
+    "dragula": "^3.7.2",
+    "dropzone": "^4.3.0",
+    "awesome-typescript-loader": "^3.1.2",
+    "babel-core": "^6.24.1",
+    "babel-loader": "^6.4.1",
+    "babel-preset-es2015": "^6.24.1",
+    "css-loader": "^0.28.0",
+    "extract-text-webpack-plugin": "^2.1.0",
+    "node-sass": "^4.5.2",
+    "sass-loader": "^6.0.3",
+    "style-loader": "^0.16.1",
+    "typescript": "^2.2.2",
+    "webpack": "^2.3.3",
+    "webpack-livereload-plugin": "^0.11.0"
+  }
+}

@@ -1,0 +1,52 @@
+<!doctype html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport"
+          content="width=device-width, user-scalable=no, initial-scale=1.0, maximum-scale=1.0, minimum-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>Document</title>
+
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/dropzone/4.3.0/min/dropzone.min.css" />
+    <link rel="stylesheet" href="../dist/rubricate.css" />
+    <link rel="stylesheet" href="../dist/rubricate.plugins.css" />
+</head>
+<body>
+
+<div id="stream-app"></div>
+<p>
+    <button id="stream-save">Save</button>
+</p>
+<textarea id="data-preview" style="width: 100%;margin:20px 0;" rows="5"></textarea>
+
+<script src="https://cdnjs.cloudflare.com/ajax/libs/dropzone/4.3.0/min/dropzone.min.js"></script>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/dragula/3.7.2/dragula.min.js"></script>
+<script src="../dist/rubricate.js"></script>
+<script src="../dist/rubricate.plugins.js"></script>
+<script src="../dist/rubricate.draggable.js"></script>
+
+<script>
+
+    var defaults = localStorage.getItem('stream__data') || '{}';
+
+    var app = Rubricate(document.getElementById('stream-app'), {
+        defaultData: JSON.parse(defaults),
+        uploadUrl: function () {return '/stream/attachment/add'},
+        csrfToken: function () {return ''}
+    });
+
+    document.getElementById('stream-save').addEventListener('click', function () {
+
+        for(var plugin of app.form.plugins) {
+            if(plugin.removed) {
+                app.form.plugins.remove(plugin.guid);
+            }
+        }
+
+        localStorage.setItem('stream__data', JSON.stringify(app.getData()));
+        document.getElementById('data-preview').value = JSON.stringify(app.getData());
+    });
+
+</script>
+</body>
+</html>

@@ -1,0 +1,26 @@
+.fs-form-message {
+
+  position: fixed;
+  bottom: 40px;
+  right: 40px;
+  width: 280px;
+
+  &__line {
+
+    padding: 20px;
+    margin-bottom: 10px;
+    color: $clouds;
+    background: rgba(0,0,0,.8);
+    border-radius: 2px;
+
+    &--info {
+      border-left: 15px solid $belize-hole;
+    }
+    &--warning {
+      border-left: 15px solid $orange;
+    }
+    &--error {
+      border-left: 15px solid $alizarin;
+    }
+  }
+}
