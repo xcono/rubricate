@@ -1,7 +1,7 @@
 {
-  "name": "rubrcate",
+  "name": "rubricate",
   "version": "0.0.1",
-  "description": "Clean way to build content via block. ",
+  "description": "Clean way to build content via custom blocks.",
   "main": "dist/rubricate.js",
   "scripts": {
     "test": "echo \"Error: no test specified\" && exit 1"

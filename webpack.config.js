@@ -3,7 +3,6 @@ let path = require('path');
 
 let ExtractTextPlugin = require("extract-text-webpack-plugin");
 
-//let BUILD_DIR = path.resolve(__dirname, '../../PyCharmProjects/streamapp/inkle/static/inkle');
 let BUILD_DIR = path.resolve(__dirname, 'dist');
 const IS_PROD = process.argv.indexOf('-p') !== -1;
 
