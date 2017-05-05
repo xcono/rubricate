@@ -7,7 +7,7 @@ Drag and drop ability provided by [dragula](https://github.com/bevacqua/dragula)
 
 Installation
 ------------
-Add `stream.draggable.js` before calling `Rubricate()`.
+Add `rubricate.draggable.js` before calling `Rubricate()`.
 ```html
 <html>
 ...
