@@ -1,10 +1,10 @@
-import {PluginType} from './interfaces';
+import {PluginType, PluginFormAction} from './interfaces';
 import PluginTypeCollection from '../PluginTypeCollection';
-import {plugin_form_insert, plugin_form_removed} from './events';
+import {plugin_form_insert, plugin_form_removed, plugin_form_actions_building} from './events';
 
 const STREAM_FORM_BLOCK_CSS_CLASS = 'fs-form';
 
-export function streamPluginFormElement(plugin: PluginType, defaults: any) {
+export function streamPluginFormElement(appElement: HTMLElement, plugin: PluginType, defaults: any) {
 
     let wrapper = document.createElement('div');
     wrapper.classList.add(STREAM_FORM_BLOCK_CSS_CLASS + '__plugin');
@@ -18,8 +18,8 @@ export function streamPluginFormElement(plugin: PluginType, defaults: any) {
     form.classList.add(STREAM_FORM_BLOCK_CSS_CLASS + '-plugin__form');
     form.appendChild(plugin.getForm());
 
-    wrapper.appendChild(streamPluginHeaderElement(plugin));
     wrapper.appendChild(form);
+    wrapper.appendChild(streamPluginActionsElement(appElement, plugin));
 
     return wrapper;
 }
@@ -87,37 +87,37 @@ function streamFormMenuItemElement(form: HTMLElement, pluginType: PluginType): H
     return item;
 }
 
-function streamPluginHeaderElement(plugin: PluginType): HTMLElement {
-
-    let header = document.createElement('div');
-    header.classList.add(STREAM_FORM_BLOCK_CSS_CLASS + '-plugin__header');
-
-    let pluginName = document.createElement('div');
-    pluginName.classList.add(STREAM_FORM_BLOCK_CSS_CLASS + '-plugin__name');
-    pluginName.innerText = plugin.constructor.getName();
-    header.appendChild(pluginName);
-
-    let drag = document.createElement('div');
-    drag.classList.add(STREAM_FORM_BLOCK_CSS_CLASS + '-plugin__drag');
-    drag.innerText = '✣'; // &#x2723;
-    header.appendChild(drag);
+function streamPluginActionsElement(appElement:HTMLElement, plugin: PluginType): HTMLElement {
 
     let actions = document.createElement('div');
     actions.classList.add(STREAM_FORM_BLOCK_CSS_CLASS + '-plugin__actions');
-    header.appendChild(actions);
 
-    let actionDelete = document.createElement('div');
-    actionDelete.classList.add(STREAM_FORM_BLOCK_CSS_CLASS + '-plugin__action');
-    actionDelete.classList.add(STREAM_FORM_BLOCK_CSS_CLASS + '-plugin__action--delete');
-    actionDelete.innerText = '×'; // &times;
-    actions.appendChild(actionDelete);
 
-    actionDelete.addEventListener('click', () => {
+    let buttonDelete = document.createElement('div');
+    buttonDelete.classList.add(STREAM_FORM_BLOCK_CSS_CLASS + '-plugin__action');
+    buttonDelete.classList.add(STREAM_FORM_BLOCK_CSS_CLASS + '-plugin__action--delete');
+    buttonDelete.innerText = '×'; // &times;
+
+    buttonDelete.addEventListener('click', () => {
         let form = document.getElementsByClassName(STREAM_FORM_BLOCK_CSS_CLASS)[0];
         form.dispatchEvent(plugin_form_removed(plugin));
     });
 
-    return header;
+
+    let buttons:Array<PluginFormAction> = [];
+    buttons.push({el: buttonDelete, name: 'delete', order: 0});
+    appElement.dispatchEvent(plugin_form_actions_building(buttons));
+
+    buttons.sort((a:PluginFormAction,b:PluginFormAction) => a.order - b.order);
+
+    for(let button of buttons) {
+
+        button.el.classList.add(STREAM_FORM_BLOCK_CSS_CLASS + '-plugin__action');
+        button.el.classList.add(STREAM_FORM_BLOCK_CSS_CLASS + '-plugin__action--' + button.name);
+        actions.appendChild(button.el);
+    }
+
+    return actions;
 }
 
 export function streamMessageElement(appElement: HTMLElement) {

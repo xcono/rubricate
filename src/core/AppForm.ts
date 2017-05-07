@@ -78,7 +78,7 @@ export default class AppForm {
 
         this.plugins.add(plugin);
 
-        let pluginForm = streamPluginFormElement(plugin, defaults);
+        let pluginForm = streamPluginFormElement(this.appElement, plugin, defaults);
         plugin._el = pluginForm;
         this.el.appendChild(pluginForm);
 

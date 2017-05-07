@@ -14,56 +14,49 @@
 
 .fs-form {
 
+  overflow: hidden;
   border: 1px solid $silver;
+  border-bottom: 0 none;
   width: 100%;
-  background: #333;
 
   &__plugin {
-    margin: 10px;
+    border-bottom: 1px solid $silver;
     background: #fff;
   }
 }
 
 .fs-form-plugin {
 
-  &__header {
-    padding: 0 20px;
-  }
-
-  &__name {
-    display: inline-block;
-    box-sizing: border-box;
-    width: 33.3333%;
-    padding: 10px 0;
-    text-transform: uppercase;
-    letter-spacing: .05em;
-  }
-
-  &__drag {
-    display: inline-block;
-    box-sizing: border-box;
-    width: 33.3333%;
-    font-size: 18px;
-    padding: 7px 5px;
-    text-align: center;
-    cursor: move;
-  }
-
-  &__actions {
-    display: inline-block;
-    box-sizing: border-box;
-    width: 33.3333%;
-    text-align: right;
-  }
-
-  &__action {
-    display: inline-block;
-    font-size: 18px;
-    padding: 7px 5px;
-    cursor: pointer;
-  }
+  overflow: hidden;
 
   &__form {
     padding: 20px;
+    display: inline-block;
+    vertical-align: top;
+    width: calc(100% - 100px);
+  }
+
+  &__actions {
+    float: right;
+
+    width: 40px;
+  }
+
+  &__action {
+    display: block;
+    font-size: 18px;
+    padding: 10px 0;
+    cursor: pointer;
+    text-align: center;
+
+    &:hover {
+      background: $clouds;
+    }
+
+    &--delete {
+      &:hover {
+        background: $alizarin;
+      }
+    }
   }
 }

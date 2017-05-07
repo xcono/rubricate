@@ -38,3 +38,9 @@ export interface AppFormValue {
     values: any;
     attachments: Array<UploadedFile>
 }
+
+export interface PluginFormAction {
+    name: string;
+    order: number;
+    el: HTMLElement;
+}

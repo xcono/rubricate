@@ -4,6 +4,7 @@ let path = require('path');
 let ExtractTextPlugin = require("extract-text-webpack-plugin");
 
 let BUILD_DIR = path.resolve(__dirname, 'dist');
+
 const IS_PROD = process.argv.indexOf('-p') !== -1;
 
 module.exports = {
@@ -15,7 +16,11 @@ module.exports = {
             './node_modules/dragula/dist/dragula.min.css',
             './src/extensions/Rubricate.draggable/app.ts',
         ],
-        'rubricate.plugins': ['./src/extensions/Rubricate.plugins/app.ts', './src/extensions/Rubricate.plugins/sass/bundle.scss'],
+        'rubricate.plugins': [
+            './src/extensions/Rubricate.plugins/app.ts',
+            './src/extensions/Rubricate.plugins/sass/bundle.scss',
+            './node_modules/medium-editor/dist/css/medium-editor.min.css'
+        ],
     },
 
     output: {
@@ -26,7 +31,6 @@ module.exports = {
     resolve: {
         extensions: ['.ts', '.d.ts']
     },
-
 
     module: {
         loaders: [
