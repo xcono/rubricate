@@ -12,7 +12,6 @@ export default class RichTextPlugin {
     private _defaults: any;
 
     private _text: any;
-    private _level: HTMLSelectElement;
 
     constructor(defaults: any, options: any) {
 
@@ -38,6 +37,12 @@ export default class RichTextPlugin {
 
 
         this._text = document.createElement('div');
+
+        if(values.input.length) {
+            this._text.innerHTML = values.input;
+        }
+
+
         // this._text.value = values ? values.input : '';
 
         let editor = new MediumEditor([this._text]);
@@ -47,8 +52,7 @@ export default class RichTextPlugin {
 
     getValues() : any {
         return {
-            input: this._text.value,
-            level: this._level.value
+            input: this._text.innerHTML
         };
     }
 }

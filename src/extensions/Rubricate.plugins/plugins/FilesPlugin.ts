@@ -84,8 +84,6 @@ export default class FilesPlugin {
 
         if(this._defaults && this._defaults.hasOwnProperty('uploads')) {
 
-            console.log(this._defaults);
-
             for(let file of this._defaults.uploads) {
 
                 this._dropzone.options.addedfile.call(this._dropzone, file);
