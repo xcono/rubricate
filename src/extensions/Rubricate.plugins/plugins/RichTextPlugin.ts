@@ -38,7 +38,7 @@ export default class RichTextPlugin {
 
         this._text = document.createElement('div');
 
-        if(values.input.length) {
+        if(values && values.input.length) {
             this._text.innerHTML = values.input;
         }
 
